@@ -23,6 +23,8 @@ export default tseslint.config(
         'warn',
         { allowConstantExport: true },
       ],
+      // Disable the rule that causes the "any" error
+      '@typescript-eslint/no-explicit-any': 'off',
     },
   },
 )

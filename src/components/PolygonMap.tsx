@@ -10,38 +10,15 @@ export default function PolygonMap() {
     const polygons = document.querySelectorAll("polygon");
 
     // Helper function to calculate area
-    function calculatePolygonArea(pointsStr: string): number {
-      const points = pointsStr
-        .trim()
-        .split(" ")
-        .map((pair) => {
-          const [x, y] = pair.split(",").map(Number);
-          return { x, y };
-        });
-
-      let area = 0;
-      const n = points.length;
-
-      for (let i = 0; i < n; i++) {
-        const { x: x1, y: y1 } = points[i];
-        const { x: x2, y: y2 } = points[(i + 1) % n];
-        area += x1 * y2 - x2 * y1;
-      }
-
-      return Math.abs(area / 2);
-    }
 
     polygons.forEach((polygon) => {
       polygon.addEventListener("mouseenter", (e) => {
         const target = e.target as SVGElement;
         const code = target.getAttribute("data-code");
-        const points = target.getAttribute("points");
 
-        if (points) {
-          const calculatedArea = calculatePolygonArea(points);
-        }
-
-        const unit = polygonData.find((u: any) => +u.code === +code);
+   
+        if (!code) return;
+        const unit = polygonData.find((u) => +u.code === +code || 0);
         if (unit) {
           setHoveredUnit(unit);
         }

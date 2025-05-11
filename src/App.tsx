@@ -20,7 +20,7 @@ function App() {
       const polygonEl = document.querySelector(
         `polygon[data-code="${poly.code}"]`
       );
-
+      if (!(polygonEl instanceof SVGPolygonElement)) return;
       if (!polygonEl) return;
 
       const matchColor =
